@@ -63,7 +63,9 @@
                     <input id="first-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p class="mouse" > <span id="first-plus" onclick="handleFirstChange(true);">+</span> <span id="first-minus" onclick="handleFirstChange(false);">-</span> </p>
+                    <p class="mouse"> <span id="first-plus" onclick="handleFirstChange(true);">+</span>
+                        <span id="first-minus" onclick="handleFirstChange(false);">-</span>
+                    </p>
                 </div>
             </div>
 
@@ -73,7 +75,9 @@
                     <input id="economy-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p class="mouse" > <span id="economy-plus" onclick="handleEconomyChange(true)">+</span> <span id="economy-minus" onclick="handleEconomyChange(false)">-</span> </p>
+                    <p class="mouse"> <span id="economy-plus" onclick="handleEconomyChange(true)">+</span>
+                        <span id="economy-minus" onclick="handleEconomyChange(false)">-</span>
+                    </p>
                 </div>
             </div>
             <div class="calculations">
@@ -91,7 +95,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$0</p>
+                        <p>$<span id="tax">0</span></p>
                     </div>
                 </div>
                 <hr>
@@ -100,7 +104,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$0</p>
+                        <p>$<span id="TotalTicketCost">0</span></p>
                     </div>
                 </div>
             </div>
@@ -110,71 +114,70 @@
 
     <!--Thank You-->
     <script>
-
-        function handleFirstChange(isIncrease){
+        function handleFirstChange(isIncrease) {
             const caseInput = document.getElementById('first-count');
-            const caseCount = parseInt(caseInput.value)
-            
+            const caseCount = parseInt(caseInput.value);
             let caseNewCount = caseCount;
-            if(isIncrease == true){
-                 caseNewCount = caseCount + 1;
-                 subtotal('first-plus');
+            if (isIncrease == true) {
+                caseNewCount = caseCount + 1;
+                subtotal('first-plus');
             }
-            else if(isIncrease == false && caseCount > 0){
-                 caseNewCount = caseCount - 1;
-                 subtotal('first-minus');
+            else if (isIncrease == false && caseCount > 0) {
+                caseNewCount = caseCount - 1;
+                subtotal('first-minus');
             }
             caseInput.value = caseNewCount;
-            // const caseTotal = caseNewCount * 150;
-            // document.getElementById('total').innerText = caseTotal;
-
-            
         }
-
         function subtotal(id) {
-            let firstTotal =  document.getElementById('sub-total');
+            let firstTotal = document.getElementById('sub-total');
             let firstTotalNumber = parseInt(firstTotal.innerText);
-            if(id == 'first-plus'){
+            if (id == 'first-plus') {
                 let subTotalFirst = firstTotalNumber + 150;
                 firstTotal.innerText = subTotalFirst;
+                TaxCount(subTotalFirst);
             }
-
-            else if(id == 'first-minus'){
+            else if (id == 'first-minus') {
                 let subTotalFirst = firstTotalNumber - 150;
                 firstTotal.innerText = subTotalFirst;
+                TaxCount(subTotalFirst);
             }
-
-
-            else if(id == 'economy-plus'){
+            else if (id == 'economy-plus') {
                 let subTotalEconomy = firstTotalNumber + 100;
                 firstTotal.innerText = subTotalEconomy;
+                TaxCount(subTotalEconomy);
             }
-
-            else if(id == 'economy-minus'){
+            else if (id == 'economy-minus') {
                 let subTotalEconomy = firstTotalNumber - 100;
                 firstTotal.innerText = subTotalEconomy;
+                TaxCount(subTotalEconomy);
             }
         }
-
-        function handleEconomyChange(isDecrease){
+        function TaxCount(subTotalFirst) {
+            const Tax = subTotalFirst * 0.1;
+            document.getElementById('tax').innerText = Tax;
+            TotalTicketCost();
+        }
+        function handleEconomyChange(isDecrease) {
             const caseInput = document.getElementById('economy-count');
-            const caseCount = parseInt(caseInput.value)
-            
-            let caseNewCount = caseCount;
-            if(isDecrease == true){
-                 caseNewCount = caseCount + 1;
-                 subtotal('economy-plus');
-            }
-            if(isDecrease == false && caseCount > 0){
-                 caseNewCount = caseCount - 1;
-                 subtotal('economy-minus');
-            }
-            
-            caseInput.value = caseNewCount;
-            // const caseTotal = caseNewCount * 100;
-            // document.getElementById('total').innerText = caseTotal;
-        }
+            const caseCount = parseInt(caseInput.value);
 
+            let caseNewCount = caseCount;
+            if (isDecrease == true) {
+                caseNewCount = caseCount + 1;
+                subtotal('economy-plus');
+            }
+            if (isDecrease == false && caseCount > 0) {
+                caseNewCount = caseCount - 1;
+                subtotal('economy-minus');
+            }
+            caseInput.value = caseNewCount;
+        }
+        function TotalTicketCost() {
+            const subTotal = document.getElementById('sub-total').innerText;
+            const TaxTotal = document.getElementById('tax').innerText;
+            const totalTicketCost = parseInt(subTotal) + parseInt(TaxTotal) ;
+            document.getElementById('TotalTicketCost').innerText = totalTicketCost;
+        }
 
     </script>
 </body>
