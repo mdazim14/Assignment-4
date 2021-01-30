@@ -125,3 +125,8 @@ nav ul li a:hover, a.active{
 .mouse:hover {
     cursor: pointer;
 }
+.bookingclass {
+    background-color: white;
+    width: 800px;
+    display: none;
+}

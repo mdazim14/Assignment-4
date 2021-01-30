@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -37,7 +44,7 @@
         </div>
 
 
-        <div class="booking-form">
+        <div id="booking-form" class="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -108,8 +115,46 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="bookNow" class="btn-style">Book Now</button>
         </div>
+        <!--  Ticket Confirmation area -->
+        <div id="booking-area" class="container p-3 mt-5 ml-5 bookingclass">
+            <h4 class="p-3 text-center ">Ticket Confirmation</h4>
+            <div class="row g-2">
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>From: Dhaka, Bangladesh.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>To: New York, United States.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>Departure Time: 02/02/2030 15:30</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>Issue date: 15/01/2030 17:25</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>Code: NH8jk84U</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p >Total Price: $<span id="bookedprice">0</span> </p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success mt-2">Done</button>
+        </div>
+
     </main>
 
     <!--Thank You-->
@@ -175,9 +220,20 @@
         function TotalTicketCost() {
             const subTotal = document.getElementById('sub-total').innerText;
             const TaxTotal = document.getElementById('tax').innerText;
-            const totalTicketCost = parseInt(subTotal) + parseInt(TaxTotal) ;
+            const totalTicketCost = parseInt(subTotal) + parseInt(TaxTotal);
             document.getElementById('TotalTicketCost').innerText = totalTicketCost;
         }
+
+        const loginBtn = document.getElementById("bookNow");
+        loginBtn.addEventListener("click", function () {
+            const loginArea = document.getElementById("booking-form");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById("booking-area");
+            transactionArea.style.display = "block";
+            const bookedPrice = document.getElementById('TotalTicketCost').innerText;
+            document.getElementById('bookedprice').innerText = bookedPrice;
+        })
+
 
     </script>
 </body>
