@@ -143,18 +143,27 @@
                 </div>
                 <div class="col-6">
                     <div class="p-3 border bg-light">
+                        <p>First Class: <span id="firstSitsNum">0</span></p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
+                        <p>Economy Class: <span id="economySitsNum">0</span></p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border bg-light">
                         <p>Code: NH8jk84U</p>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="p-3 border bg-light">
-                        <p >Total Price: $<span id="bookedprice">0</span> </p>
+                        <p>Total Price: $<span id="bookedPrice">0</span> </p>
                     </div>
                 </div>
             </div>
             <button class="btn btn-success mt-2">Done</button>
         </div>
-
     </main>
 
     <!--Thank You-->
@@ -231,9 +240,13 @@
             const transactionArea = document.getElementById("booking-area");
             transactionArea.style.display = "block";
             const bookedPrice = document.getElementById('TotalTicketCost').innerText;
-            document.getElementById('bookedprice').innerText = bookedPrice;
-        })
+            document.getElementById('bookedPrice').innerText = bookedPrice;
 
+            const firstSits = document.getElementById('first-count').value;
+            document.getElementById('firstSitsNum').innerText = firstSits ;
+            const economySits = document.getElementById('economy-count').value;
+            document.getElementById('economySitsNum').innerText = economySits;
+        })
 
     </script>
 </body>
